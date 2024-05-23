@@ -1,6 +1,7 @@
 'use client';
 import CadastrarPessoa from "@/components/CadastrarPessoa";
 import ListaPessoasFisicas from "@/components/ListaPessoasFisicas";
+import { useRouter } from "next/router";
 
 export default function Home() {
   return (

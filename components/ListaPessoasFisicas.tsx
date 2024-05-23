@@ -1,5 +1,5 @@
 import FisicaService, { FisicaOut } from "@/services/fisica";
-import formataCPF from "@/services/fisica/utils";
+import { formataCPF, formataTelefone } from "@/services/fisica/utils";
 import { useEffect, useState } from "react";
 
 const ListaPessoasFisicas = () => {
@@ -33,7 +33,7 @@ const ListaPessoasFisicas = () => {
               <td>{fisica.pes_nome}</td>
               <td>{formataCPF(fisica.fis_cpf)}</td>
               <td>{fisica.pes_email}</td>
-              <td>{fisica.pes_telefone}</td>
+              <td>{formataTelefone(fisica.pes_telefone)}</td>
               <td>{fisica.pes_status ? 'Ativo' : 'Inativo'}</td>
             </tr>
           ))}

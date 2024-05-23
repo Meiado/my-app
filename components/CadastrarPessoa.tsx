@@ -1,16 +1,22 @@
 import { AiOutlinePlus } from 'react-icons/ai'
+import { InputMask } from '@react-input/mask';
 import FisicaModal from './FisicaModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { formataRG, formataCPF, formataTelefone, validaEmail } from '@/services/fisica/utils';
+import FisicaForm from './FisicaForm';
 
-const AddTask = () => {
-    const [modalOpen, setModalOpen] = useState<boolean>(false);
-
-    return (
-        <div>
-            <button onClick={() => setModalOpen(true)} className='btn btn-primary w-full'><AiOutlinePlus size={15} className='ml-2'/>Cadastrar nova pessoa</button>
-            <FisicaModal modalOpen={modalOpen} setModalOpen={setModalOpen}> modal para cadastrar </FisicaModal>
-        </div>
-    )
+const CadastrarPessoaFisica = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+  
+  return (
+    <div>
+      <button className="btn btn-primary" onClick={() => setModalOpen(true)}> <AiOutlinePlus/> Cadastrar Pessoa Física</button>
+      <FisicaModal modalOpen={modalOpen} setModalOpen={setModalOpen}>
+        <FisicaForm />
+        <button onClick={() => setModalOpen(false)} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
+      </FisicaModal>
+    </div>
+  );
 };
 
-export default AddTask;
+export default CadastrarPessoaFisica;
