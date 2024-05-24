@@ -1,0 +1,16 @@
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+/* Esconde os spinners no Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Adiciona uma classe personalizada para inputs sem spinner */
+.input.no-spinner {
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+}

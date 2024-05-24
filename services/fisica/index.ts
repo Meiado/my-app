@@ -16,21 +16,7 @@ export interface FisicaIn {
   fis_data_nascimento: Date
 }
 
-export interface FisicaUpdate {
-  pes_nome: string,
-  pes_email: string,
-  pes_telefone: string,
-  pes_logradouro: string,
-  pes_complemento: string,
-  pes_numero: string,
-  pes_bairro: string,
-  cid_id: number,
-  pes_status: boolean,
-  fis_cpf: string,
-  fis_rg: string,
-  sex_id: number,
-  fis_data_nascimento: Date
-}
+
 
 export interface FisicaOut {
   pes_id: number,
@@ -58,7 +44,10 @@ export class FisicaService {
   }
 
   // Função para obter os detalhes de uma pessoa física específica pelo ID
-  static async getFisicaById(id: number): Promise<FisicaOut> {
+  static async getFisicaById(id: number): Promise<FisicaOut|null> {
+    if(id <= 0) {
+      return null;
+    }
     const response = await api.get(`/fisicas/${id}`);
     return response.data;
   }
@@ -70,7 +59,10 @@ export class FisicaService {
   }
 
   // Função para atualizar uma pessoa física existente
-  static async updateFisica(id: number, fisica: FisicaUpdate): Promise<FisicaOut> {
+  static async updateFisica(id: number, fisica: FisicaIn): Promise<FisicaOut|null> {
+    if(id <= 0) {
+      return null;
+    }
     const response = await api.put(`/fisicas/${id}`, fisica);
     return response.data;
   }
