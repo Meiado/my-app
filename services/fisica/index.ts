@@ -16,8 +16,6 @@ export interface FisicaIn {
   fis_data_nascimento: Date
 }
 
-
-
 export interface FisicaOut {
   pes_id: number,
   pes_nome: string,

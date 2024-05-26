@@ -1,4 +1,5 @@
 import { CidadeOut, CidadeService } from "@/services/cidade";
+import { EstadoOut, EstadoService } from "@/services/estado";
 import FisicaService, { FisicaOut } from "@/services/fisica";
 import { formataCPF, formataRG, formataTelefone } from "@/services/fisica/utils";
 import React, { useEffect, useState } from "react";
@@ -17,6 +18,7 @@ enum Genero {
 const FisicaCard: React.FC<FisicaCardProps> = ({ pessoaId, setCardOpen }) => {
   const [pessoa, setPessoa] = useState<FisicaOut>();
   const [cidade, setCidade] = useState<CidadeOut>();
+  const [estado, setEstado] = useState<EstadoOut>();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -25,9 +27,15 @@ const FisicaCard: React.FC<FisicaCardProps> = ({ pessoaId, setCardOpen }) => {
     }
   }, [pessoaId]);
 
+  const fetchEstado = async (est_id: number) => {
+    const data = await EstadoService.getEstadoById(est_id);
+    setEstado(data);
+  };
+
   const fetchCidade = async (cid_id: string) => {
     const data = await CidadeService.getCidadeById(cid_id);
     setCidade(data);
+    await fetchEstado(data!.est_id);
   };
 
   const fetchFisica = async () => {
@@ -58,7 +66,7 @@ const FisicaCard: React.FC<FisicaCardProps> = ({ pessoaId, setCardOpen }) => {
             <span className="loading loading-dots loading-md"></span>
           </div>
         ) : (
-          pessoa && cidade && (
+          pessoa && cidade && estado && (
             <div className="space-y-2">
               <div className="flex justify-between">
                 <span className="font-semibold">Nome:</span>
@@ -98,7 +106,7 @@ const FisicaCard: React.FC<FisicaCardProps> = ({ pessoaId, setCardOpen }) => {
               </div>
               <div className="flex justify-between">
                 <span className="font-semibold">Cidade:</span>
-                <span>{cidade.cid_nome}</span>
+                <span>{cidade.cid_nome + " - " + estado.est_uf}</span>
               </div>
               <div className="flex justify-between">
                 <span className="font-semibold">Status:</span>

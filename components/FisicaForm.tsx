@@ -268,7 +268,7 @@ const FisicaForm = ({ pessoaId }: FisicaFormProps) => {
               <div className='columns-3'>
               <div className="form-control">
                 <label className="label">
-                  <span className="label-text">RG: </span>
+                  <span className="label-text">RG: *</span>
                 </label>
                 <input
                   type="text"
@@ -323,7 +323,7 @@ const FisicaForm = ({ pessoaId }: FisicaFormProps) => {
               <div className='columns-2'>
                 <div className='form-control'>
                   <label className="label">
-                    <span className="label-text">Telefone: </span>
+                    <span className="label-text">Telefone: *</span>
                   </label>
                   <input 
                     type="text"
@@ -332,6 +332,7 @@ const FisicaForm = ({ pessoaId }: FisicaFormProps) => {
                     onChange={handleTelefoneChange}
                     className='input input-bordered'
                     maxLength={15}
+                    required
                   />
                 </div>
                 <div className='form-control'>
@@ -344,6 +345,7 @@ const FisicaForm = ({ pessoaId }: FisicaFormProps) => {
                     value={formData.email}
                     onChange={handleEmailChange}
                     className='input input-bordered'
+                    required
                   />
                 </div>
               </div>
@@ -404,7 +406,6 @@ const FisicaForm = ({ pessoaId }: FisicaFormProps) => {
                     value={formData.complemento}
                     onChange={handleChange}
                     className='input input-bordered'
-                    required
                   />
                 </div>
                 <SelectEstado 
@@ -457,7 +458,7 @@ const FisicaForm = ({ pessoaId }: FisicaFormProps) => {
           </div>
           )}
           <div className="flex justify-end">
-              <div className="mt-10 mr-5 badge badge-neutral">*: Campos obrigatórios</div>
+              <div className="mt-10 mr-5 badge badge-neutral">* : Campos obrigatórios</div>
               <div className="modal-action">
                 <button type="submit" className="btn">Salvar</button>
               </div>
